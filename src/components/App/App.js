@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProjectPage from '../ProjectPage/ProjectPage';
-import ProjectPage from '../AdminPage/AdminPage';
+import AdminPage from '../AdminPage/AdminPage';
 import './App.css';
 
 class App extends Component {
