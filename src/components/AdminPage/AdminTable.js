@@ -8,6 +8,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 
 
@@ -16,6 +17,12 @@ class AdminTable extends Component {
   componentDidMount(){
      this.props.dispatch({type:'GET_PORTFOLIO'})
   }
+
+  deleteProject = (id) => {
+      return (event) => {
+         this.props.dispatch({type: 'DELETE_PROJECT', payload: id});
+      }
+   }
    
    render() {
     
@@ -29,14 +36,20 @@ class AdminTable extends Component {
                       <TableCell>Project Name</TableCell>
                       <TableCell>Website URL</TableCell>
                       <TableCell>Github URL</TableCell>
+                      <TableCell>Date Completed</TableCell>
+                      <TableCell>Delete</TableCell>
                   </TableRow>
               </TableHead>
               <TableBody className="resultsTableBody">
                 {this.props.reduxState.portfolio.map( project =>
-                  <TableRow >
+                  <TableRow key={project.id}>
                       <TableCell>{project.name}</TableCell>
                       <TableCell>{project.website}</TableCell>
                       <TableCell>{project.github}</TableCell>
+                      <TableCell>{project.date_completed.substring(0,10)}</TableCell>
+                      <TableCell>
+                        <Button variant="contained" color="secondary" onClick={this.deleteProject(project.id)}>Delete<DeleteIcon></DeleteIcon></Button>
+                      </TableCell>
                   </TableRow>
                 )}
               </TableBody>

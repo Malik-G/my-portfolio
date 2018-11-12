@@ -45,7 +45,7 @@ class ProjectPage extends Component {
             <ExpansionPanel className="expansionPanel" expanded={expanded === project.id} onChange={this.handleChange(project.id)}>
                <ExpansionPanelSummary className="panel" expandIcon={<ExpandMoreIcon />}>
                   <img className="screenshot" src={project.thumbnail} alt="To-Do List screenshot"/>
-                  <p className="projectName1"> {project.name} </p>
+                  <p className="projectName"> {project.name}</p>
                </ExpansionPanelSummary>
                <ExpansionPanelDetails className="toBlack">
                   <div className="infoContainer">

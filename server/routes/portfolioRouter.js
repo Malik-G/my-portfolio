@@ -36,4 +36,17 @@ router.post('/', (req, res) => {
      });
  });
 
+router.delete('/', (req, res) => {
+//console.log(req.query);
+const queryText = 'DELETE FROM projects WHERE id=$1';
+pool.query(queryText, [req.query.id])
+   .then(() => {
+      res.sendStatus(200);
+   })
+   .catch((err) => {
+   console.log('Error completing SELECT plant query', err);
+   res.sendStatus(500);
+   });
+});
+
 module.exports = router

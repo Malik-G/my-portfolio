@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -31,8 +32,8 @@ class AdminForm extends Component {
       event.preventDefault();
       console.log(this.state);
       this.props.dispatch({ type: 'POST_PROJECT', payload: this.state});
-      this.setState(projectInfo);
       this.props.history.push('/');
+      //this.setState(projectInfo);
    }
    
    render(){
@@ -45,7 +46,7 @@ class AdminForm extends Component {
                      id="outlined-name"
                      label="Name"
                      name="name"
-                     className="projectName"
+                     //className="projectInput"
                      value={this.state.name}
                      onChange={this.handleChange}
                      margin="normal"
@@ -57,7 +58,7 @@ class AdminForm extends Component {
                      // label="Date Completed"
                      type="date"
                      name="date_completed"
-                     // className="projectName"
+                     // className="projectInput"
                      value={this.state.date_completed}
                      onChange={this.handleChange}
                      margin="normal"
@@ -68,7 +69,7 @@ class AdminForm extends Component {
                      id="outlined-tag"
                      label="Tags"
                      name="tag_id"
-                     // className="projectName"
+                     // className="projectInput"
                      value={this.state.tag_id}
                      onChange={this.handleChange}
                      margin="normal"
@@ -79,7 +80,7 @@ class AdminForm extends Component {
                      id="outlined-website"
                      label="Website URL"
                      name="website"
-                     //className="projectName"
+                     //className="projectInput"
                      value={this.state.website}
                      onChange={this.handleChange}
                      margin="normal"
@@ -90,7 +91,7 @@ class AdminForm extends Component {
                      id="outlined-name"
                      label="Github URL"
                      name="github"
-                     //className="projectName"
+                     //className="projectInput"
                      value={this.state.github}
                      onChange={this.handleChange}
                      margin="normal"
@@ -101,7 +102,7 @@ class AdminForm extends Component {
                      id="outlined-thumbnail"
                      label="Thumbnail URL"
                      name="thumbnail"
-                     // className="projectName"
+                     // className="projectInput"
                      value={this.state.thumbnail}
                      onChange={this.handleChange}
                      margin="normal"
@@ -112,7 +113,7 @@ class AdminForm extends Component {
                      id="outlined-description"
                      label="Description"
                      name="description"
-                     //className="projectName"
+                     //className="projectInput"
                      value={this.state.description}
                      onChange={this.handleChange}
                      margin="normal"
@@ -130,4 +131,4 @@ class AdminForm extends Component {
 
 }
 
-export default connect()(AdminForm);
+export default withRouter(connect()(AdminForm));

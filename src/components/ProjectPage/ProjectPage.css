@@ -8,9 +8,6 @@ body {
    margin-right: 50px;
    min-width: 650px;
 }
-.panel{
-
-}
 
 .header {
    display: inline;
@@ -29,11 +26,13 @@ body {
    width: 300px;
 }
 
-.projectName1{
-   font-size: 50px;
-   margin-left: 20px;
-   line-height: 200%;
+.projectName{
+   margin: auto auto;
+   font-size: 40px;
+   /* margin-left: 20px;
+   line-height: 200%; */
 }
+
 
 
 h1 {
