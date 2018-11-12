@@ -39,7 +39,12 @@ class ProjectPage extends Component {
       return(
          <section className="container">
             <Button variant="outlined" color="secondary" onClick={this.toAdminPage}>Admin</Button>
-            <h1 className="header">The Portfolio</h1>
+            <h1 className="header">
+               <span className="headerThe">The </span> 
+               <span className="headerPort"> Port</span>
+               <span className="headerFo">fo</span>
+               <span className="headerLio">lio</span>
+            </h1>
             {this.props.reduxState.portfolio.map( project => 
             <ExpansionPanel className="expansionPanel" expanded={expanded === project.id} onChange={this.handleChange(project.id)}>
                <ExpansionPanelSummary className="panelSummary" expandIcon={<ExpandMoreIcon />}>

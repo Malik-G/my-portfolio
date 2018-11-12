@@ -44,7 +44,7 @@ class AdminPage extends Component {
    
    render(){
       return(
-         <section>
+         <section className="adminContainer">
             <Button variant="outlined" color="primary" onClick={this.toHomePage} >Home </Button><br></br>
             <h1>Admin Page</h1>
             <AdminForm/>
