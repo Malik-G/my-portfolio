@@ -1,15 +1,56 @@
+body {
+   background: black;
+}
+
+.container {
+   
+   margin-left: 50px;
+   margin-right: 50px;
+   min-width: 650px;
+}
+.panel{
+
+}
+
+.expansionPanel {
+   margin-left: 100px;
+   margin-right: 100px;
+   min-width: 650px;
+   /* max-width: 1000px; */
+   
+}
+
 .screenshot {
    height: 300px;
    width: 300px;
 }
 
 .projectName{
-   font-size: 60px;
+   font-size: 50px;
    margin-left: 20px;
-   /* line-height: 50%; */
+   line-height: 200%;
+}
+
+
+h1 {
+   color: white;
 }
 
 h3 {
    font-weight: bold;
-   text-decoration: underline;
+   /* text-decoration: underline; */
+}
+
+.infoContainer {
+   max-width: 400px;
+   border: 2px solid black;
+   margin: auto;
+   padding: 5px;
+   background: CADETBLUE;
+   text-decoration: none;
+   /* margin-left: 200px; */
+}
+
+.toBlack {
+   background-color: black;
 }

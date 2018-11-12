@@ -5,6 +5,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Button from '@material-ui/core/Button';
 import './ProjectPage.css';
 
 class ProjectPage extends Component {
@@ -32,29 +33,42 @@ class ProjectPage extends Component {
       const { expanded } = this.state;
       
       return(
-         <section>
+         <section className="container">
             <h1>Project Page</h1>
-            <ExpansionPanel expanded={expanded === 'panel3'} onChange={this.handleChange('panel3')}>
-               <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                  <img className="screenshot" src="images/to_do_list.png" alt="To-Do List screenshot"/>
-                  <p className="projectName"> To-Do-List </p>
+            {this.props.reduxState.portfolio.map( project => 
+            
+            <ExpansionPanel className="expansionPanel" expanded={expanded === project.id} onChange={this.handleChange(project.id)}>
+               <ExpansionPanelSummary className="panel" expandIcon={<ExpandMoreIcon />}>
+                  <img className="screenshot" src={project.thumbnail} alt="To-Do List screenshot"/>
+                  <p className="projectName"> {project.name} </p>
                </ExpansionPanelSummary>
-               <ExpansionPanelDetails>
-                  <div>
+               <ExpansionPanelDetails className="toBlack">
+                  <div className="infoContainer">
                      <h3 >Description</h3>
-                     <p>This is a fullstack to-do list that takes a new task as an input and saves the task to a database. 
-                        The screen stays updated with most current list and the user has the option to: delete a task,
-                        "check off" a task when completed, or "uncheck" a previously completed task.
-                     </p><br></br>
-                     <h3 >Tags</h3>
+                     
+                        <p>{project.description}</p>
+                     
+                  </div>
+                  <div className="infoContainer">
+                     <h3>See Online</h3>
+                     <a href={project.github}><Button variant="contained" color="primary">CODE ON GITHUB</Button></a>
+                     <a href={project.website}><Button variant="contained" color="default">WEBSITE</Button></a>
+                  </div>
+                  <div className="infoContainer">   
+                     <h3 >Technologies</h3>
                      <p>"jQuery" </p>
                   </div>
                </ExpansionPanelDetails>
             </ExpansionPanel>
+            )}
          </section>
       )
    }
 
 }
 
-export default connect()(ProjectPage);
+const mapReduxStateToProps = (reduxState) => {
+   return {reduxState};
+}
+
+export default connect(mapReduxStateToProps)(ProjectPage);
