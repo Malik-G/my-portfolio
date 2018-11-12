@@ -40,10 +40,10 @@ class ProjectPage extends Component {
          <section className="container">
             <Button variant="outlined" color="secondary" onClick={this.toAdminPage}>Admin</Button>
             <h1 className="header">
-               <span className="headerThe">The </span> 
-               <span className="headerPort"> Port</span>
-               <span className="headerFo">fo</span>
-               <span className="headerLio">lio</span>
+               <span className="colorOrange">The </span> 
+               <span className="colorSeaGreen"> Port</span>
+               <span className="colorLightBlue">fo</span>
+               <span className="colorTomato">lio</span>
             </h1>
             {this.props.reduxState.portfolio.map( project => 
             <ExpansionPanel className="expansionPanel" expanded={expanded === project.id} onChange={this.handleChange(project.id)}>
@@ -53,17 +53,17 @@ class ProjectPage extends Component {
                </ExpansionPanelSummary>
                <ExpansionPanelDetails className="panelDetails">
                   <div className="infoContainer">
-                     <h3 >Description</h3>
+                     <h2 className="colorOrange">Description</h2>
                      
                      <p>{project.description}</p>
                   </div>
                   <div className="infoContainer">
-                     <h3>See Online</h3>
+                     <h2 className="colorSeaGreen">See Online</h2>
                      <a href={project.github}><Button variant="contained" color="primary">CODE ON GITHUB</Button></a>
                      <a href={project.website}><Button variant="contained" color="default">WEBSITE</Button></a>
                   </div>
                   <div className="infoContainer">   
-                     <h3 >Technologies</h3>
+                     <h2 className="colorTomato">Technologies</h2>
                      <p>{project.tag}</p>
                   </div>
                </ExpansionPanelDetails>
