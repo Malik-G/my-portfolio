@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -28,26 +29,28 @@ class ProjectPage extends Component {
       this.props.dispatch({type: 'GET_PORTFOLIO'})
    }
 
+   toAdminPage = () => {
+      this.props.history.push('/admin');
+   }
+
    render(){
       
       const { expanded } = this.state;
       
       return(
          <section className="container">
+            <Button variant="outlined" color="secondary" onClick={this.toAdminPage}>Admin</Button>
             <h1>Project Page</h1>
             {this.props.reduxState.portfolio.map( project => 
-            
             <ExpansionPanel className="expansionPanel" expanded={expanded === project.id} onChange={this.handleChange(project.id)}>
                <ExpansionPanelSummary className="panel" expandIcon={<ExpandMoreIcon />}>
                   <img className="screenshot" src={project.thumbnail} alt="To-Do List screenshot"/>
-                  <p className="projectName"> {project.name} </p>
+                  <p className="projectName1"> {project.name} </p>
                </ExpansionPanelSummary>
                <ExpansionPanelDetails className="toBlack">
                   <div className="infoContainer">
                      <h3 >Description</h3>
-                     
-                        <p>{project.description}</p>
-                     
+                     <p>{project.description}</p>
                   </div>
                   <div className="infoContainer">
                      <h3>See Online</h3>
@@ -71,4 +74,4 @@ const mapReduxStateToProps = (reduxState) => {
    return {reduxState};
 }
 
-export default connect(mapReduxStateToProps)(ProjectPage);
+export default withRouter(connect(mapReduxStateToProps)(ProjectPage));

@@ -14,10 +14,11 @@ import createSagaMiddleware from 'redux-saga';
 
 // Create the rootSaga generator function
 function* rootSaga() {
-   yield takeEvery('GET_PORTFOLIO', getPortfolioSaga)
+   yield takeEvery('GET_PORTFOLIO', getPortfolioSaga);
+   yield takeEvery('POST_PROJECT', postProjectSaga)
 }
 
-function* getPortfolioSaga(){
+function* getPortfolioSaga(action){
    try{
       const response = yield call(axios.get, '/portfolio');
       yield put({type: 'SET_PORTFOLIO', payload: response.data})
@@ -25,6 +26,16 @@ function* getPortfolioSaga(){
    catch (error) {
       console.log('Error with GET to /portfolio:', error);
    }
+}
+
+function* postProjectSaga(action) {
+   try {
+      yield call(axios.post, '/portfolio/', action.payload);
+      yield put({type: 'GET_PORTFOLIO'});
+  }
+  catch (error) {
+      console.log('POST request to /portfolio UNSUCCESSFUL...');
+  }
 }
 
 // Create sagaMiddleware
