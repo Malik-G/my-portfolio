@@ -4,7 +4,6 @@ import {withRouter} from 'react-router-dom';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
 import './ProjectPage.css';
@@ -40,16 +39,17 @@ class ProjectPage extends Component {
       return(
          <section className="container">
             <Button variant="outlined" color="secondary" onClick={this.toAdminPage}>Admin</Button>
-            <h1>Project Page</h1>
+            <h1 className="header">The Portfolio</h1>
             {this.props.reduxState.portfolio.map( project => 
             <ExpansionPanel className="expansionPanel" expanded={expanded === project.id} onChange={this.handleChange(project.id)}>
-               <ExpansionPanelSummary className="panel" expandIcon={<ExpandMoreIcon />}>
+               <ExpansionPanelSummary className="panelSummary" expandIcon={<ExpandMoreIcon />}>
                   <img className="screenshot" src={project.thumbnail} alt="To-Do List screenshot"/>
                   <p className="projectName"> {project.name}</p>
                </ExpansionPanelSummary>
-               <ExpansionPanelDetails className="toBlack">
+               <ExpansionPanelDetails className="panelDetails">
                   <div className="infoContainer">
                      <h3 >Description</h3>
+                     
                      <p>{project.description}</p>
                   </div>
                   <div className="infoContainer">
@@ -59,7 +59,7 @@ class ProjectPage extends Component {
                   </div>
                   <div className="infoContainer">   
                      <h3 >Technologies</h3>
-                     <p>"jQuery" </p>
+                     <p>{project.tag}</p>
                   </div>
                </ExpansionPanelDetails>
             </ExpansionPanel>

@@ -3,7 +3,9 @@ const router = express.Router();
 const pool = require('../modules/pool');
 
 router.get('/', (req, res) =>{
-   const sqlText = 'SELECT * FROM projects';
+   //const sqlText = 'SELECT * FROM projects';
+   const sqlText = `SELECT projects.*, tags.name as tag
+   FROM projects JOIN tags ON projects.tag_id=tags.id`
    pool.query(sqlText)
       .then((result) => {
          res.send(result.rows);

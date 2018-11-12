@@ -15,7 +15,11 @@
     "react-scripts": "^1.1.5",
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
-    "redux-saga": "^0.16.0"
+    "redux-saga": "^0.16.0",
+    "typeface-abel": "0.0.54",
+    "typeface-alegreya-sans-sc": "0.0.54",
+    "typeface-nothing-you-could-do": "0.0.54",
+    "typeface-syncopate": "0.0.54"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"

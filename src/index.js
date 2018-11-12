@@ -6,6 +6,10 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import {call, put, takeEvery} from 'redux-saga/effects'
 import axios from 'axios';
+import 'typeface-alegreya-sans-sc';
+import 'typeface-nothing-you-could-do';
+import 'typeface-syncopate';
+import 'typeface-abel';
 // Provider allows us to use redux within our react app
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
