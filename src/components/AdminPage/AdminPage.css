@@ -1,3 +1,7 @@
+.homeBtn {
+   margin-top: 50px;
+}
+
 .adminForm {
    width: 50%;
    margin: auto;
@@ -5,9 +9,8 @@
 
 .projectsTable{
    margin-top: 80px;
-   margin-bottom: 50px;
 }
 
 .adminContainer {
-   margin-top: 20px;
+   /* margin-top: 20px; */
 }

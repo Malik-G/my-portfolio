@@ -44,8 +44,8 @@ class AdminPage extends Component {
    
    render(){
       return(
-         <section className="adminContainer">
-            <Button variant="outlined" color="primary" onClick={this.toHomePage} >Home </Button><br></br>
+         <section style={style} className="adminContainer">
+            <Button  className="homeBtn" variant="outlined" color="primary" onClick={this.toHomePage} >Home </Button><br></br>
             <h1>Admin Page</h1>
             <AdminForm/>
             <AdminTable/>
@@ -53,6 +53,10 @@ class AdminPage extends Component {
       )
    }
 
+}
+
+const style = {
+   background: 'white',
 }
 
 export default connect()(AdminPage);
