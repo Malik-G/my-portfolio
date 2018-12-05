@@ -3,7 +3,7 @@
 This website includes some of my favorite projects that I have created.
 
 ## View
-* Follow this link to the site: [Portfolio](https://young-sea-76614.herokuapp.com/#/home)
+* Follow this link to the site: [Portfolio](https://mysterious-bayou-33544.herokuapp.com)
 * Register a new account to interact with the site, or use USERNAME: `malik` and PASSWORD: `malikg1` to interact as an existing user.
 
 ## Future Versions
