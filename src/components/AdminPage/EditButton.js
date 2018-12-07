@@ -21,7 +21,17 @@ const styling = theme => ({
    },
    inlineBlock:{
       float: 'left',
-   }
+   },
+   customBtn: {
+      height: 10,
+      width: 80,
+      fontWeight: 'bold',
+      fontSize: 10,
+      color: 'white'
+   },
+   backgroundGray: {
+      background: 'dimgray'
+   },
 })
 
 const projectTags = {
@@ -53,15 +63,14 @@ class EditButton extends Component {
    };
    
    handleChange = (event) => {
-      
-         this.setState({
-            [event.target.name]: event.target.value,
-         });
-
-   }
+      this.setState({
+         [event.target.name]: event.target.value,
+      });
+}
 
    confirmUpdate = () => {
       this.props.dispatch({type:'POST_TAGS' , payload: {project_id: this.props.theProject.id, tagInfo: this.state}})
+      this.setState({open: false})
    }
    
    render(){
@@ -77,7 +86,7 @@ class EditButton extends Component {
       return(
          <section>
             <div className={classes.alignCenter}>
-               <Button onClick={this.handleOpenClick} className={ `${classes.customBtn} ${classes.backgroundGray}`}>
+               <Button onClick={this.handleOpenClick} className={ `${classes.customBtn} ${classes.backgroundGray}`} variant="contained">
                   <EditIcon className={classes.marginRight}/> Edit
                </Button>
             </div>

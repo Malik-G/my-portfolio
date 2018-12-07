@@ -58,16 +58,21 @@ class ProjectPage extends Component {
       
       return(
          <section style={container} className="container">
-            <Button variant="outlined" color="secondary" onClick={this.toAdminPage}>Admin</Button><br></br>
-            <div >
+            <div>
                <img  style={myPic} src="images/malik_glass.jpg" alt="Picture of Malik Glass"/>
+               <h1 style={justify} className="header">
+                  <span className="colorOrange">The </span> 
+                  <span className="colorSeaGreen"> Port</span>
+                  <span className="colorLightBlue">f<span onClick={this.toAdminPage}>o</span></span>
+                  <span className="colorTomato">lio</span>
+               </h1>
+               <div style={linkDiv}>
+                  <a href="https://malik-g.github.io/resume">Link to my RESUME</a>
+               </div>
+               <div style={linkDiv}>
+                  <a href="https://github.com/Malik-G">Link to my GITHUB</a>
+               </div>
             </div>
-            <h1 style={justify} className="header">
-               <span className="colorOrange">The </span> 
-               <span className="colorSeaGreen"> Port</span>
-               <span className="colorLightBlue">fo</span>
-               <span className="colorTomato">lio</span>
-            </h1>
             {this.props.reduxState.portfolio.map( project => 
                <ProjectSection theProject={project} handleChange={this.handleChange} state={this.state}/>
             )}
@@ -86,7 +91,9 @@ const myPic = {
    borderRadius: 50,
    height: 150,
    width: 200,
-   marginTop: 40
+   marginTop: 40,
+   marginLeft: 'auto',
+   marginRight: 'auto'
 }
 
 const styleBlack = {
@@ -103,7 +110,12 @@ const justify = {
 
 const margin = {
    margin: 'auto',
-   width: 1000
+}
+
+const linkDiv = {
+   color: 'white',
+   marginBottom: 40,
+   fontSize: 25
 }
 export default withRouter(connect(mapReduxStateToProps)(ProjectPage));
 //export default withRouter(connect(mapReduxStateToProps)(withStyles(styling)(ProjectPage)));

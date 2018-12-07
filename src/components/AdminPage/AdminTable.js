@@ -12,6 +12,17 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
 import EditButton from './EditButton'
 
+const customBtn = {
+   height: 10,
+   width: 80,
+   fontWeight: 'bold',
+   fontSize: 10,
+   color: 'white'
+}
+
+const backgroundRed = {
+   background: 'firebrick'
+}
 
 class AdminTable extends Component {
 
@@ -50,7 +61,7 @@ class AdminTable extends Component {
                       <TableCell>{project.date_completed.substring(0,10)}</TableCell>
                       <TableCell>
                         <EditButton theProject={project}/>
-                        <Button variant="contained" color="secondary" onClick={this.deleteProject(project.id)}>Delete<DeleteIcon></DeleteIcon></Button>
+                        <Button variant="contained" color="secondary" style={{...customBtn, ...backgroundRed}} onClick={this.deleteProject(project.id)}>Delete<DeleteIcon></DeleteIcon></Button>
                       </TableCell>
                   </TableRow>
                 )}
