@@ -9,6 +9,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import TextField from '@material-ui/core/TextField';
 //import Checkbox from '@material-ui/core/Checkbox';
 import './AdminForm.css';
+import { eventChannel } from 'redux-saga';
 
 const styling = theme => ({
    inlineBlock: {
@@ -30,9 +31,11 @@ class AdminForm extends Component {
    
    state = projectInfo
 
-   handleChange = name => event => {
-      this.setState({ [name]: event.target.checked });
-    };
+   handleChange = (event) => {
+      this.setState({
+         [event.target.name]: event.target.value
+      });
+   };
 
    handleSubmit = event => {
       event.preventDefault();
