@@ -7,6 +7,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
+import ProjectSection from './ProjectSection';
 import './ProjectPage.css';
 
 // const styling = theme => ({
@@ -25,16 +26,25 @@ class ProjectPage extends Component {
   
     handleChange = panel => (event, expanded) => {
       this.setState({
-        expanded: expanded ? panel : false,
+        expanded: panel
       });
     };
    
    componentDidMount(){
-      this.getPortfolio();
+      this.props.dispatch({type: 'GET_PORTFOLIO'})
+      //this.props.dispatch({type: 'GET_PROJECT_TAGS', payload: 1})
+      //this.getPortfolio();
    }
    
-   getPortfolio = () => {
-      this.props.dispatch({type: 'GET_PORTFOLIO'})
+   // getPortfolio = () => {
+   //    this.props.dispatch({type: 'GET_PORTFOLIO'})
+   // }
+
+   getProjectTags = (id) => {
+      return (event) => {
+         this.props.dispatch({type: 'GET_PROJECT_TAGS', payload: id})
+         
+      }
    }
 
    toAdminPage = () => {
@@ -44,7 +54,7 @@ class ProjectPage extends Component {
    render(){
       
       const {classes} = this.props
-      const { expanded } = this.state;
+      //const { expanded } = this.state;
       
       return(
          <section style={container} className="container">
@@ -58,30 +68,8 @@ class ProjectPage extends Component {
                <span className="colorLightBlue">fo</span>
                <span className="colorTomato">lio</span>
             </h1>
-           
             {this.props.reduxState.portfolio.map( project => 
-            <ExpansionPanel style={margin} className="expansionPanel" expanded={expanded === project.id} onChange={this.handleChange(project.id)}>
-               <ExpansionPanelSummary style={styleBlack} className="panelSummary" expandIcon={<ExpandMoreIcon />}>
-                  <img className="screenshot" src={project.thumbnail} alt="To-Do List screenshot"/>
-                  <p className="projectName"> {project.name}</p>
-               </ExpansionPanelSummary>
-               <ExpansionPanelDetails style={styleBlack} className="panelDetails">
-                  <div className="infoContainer">
-                     <h2 className="colorOrange">Description</h2>
-                     
-                     <p>{project.description}</p>
-                  </div>
-                  <div className="infoContainer">
-                     <h2 className="colorSeaGreen">See Online</h2>
-                     <a href={project.github}><Button variant="contained" color="primary">CODE ON GITHUB</Button></a>
-                     <a href={project.website}><Button variant="contained" color="default">WEBSITE</Button></a>
-                  </div>
-                  <div className="infoContainer">   
-                     <h2 className="colorTomato">Technologies</h2>
-                     <p>{project.tag}</p>
-                  </div>
-               </ExpansionPanelDetails>
-            </ExpansionPanel>
+               <ProjectSection theProject={project} handleChange={this.handleChange} state={this.state}/>
             )}
          </section>
       )

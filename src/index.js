@@ -19,8 +19,10 @@ import createSagaMiddleware from 'redux-saga';
 // Create the rootSaga generator function
 function* rootSaga() {
    yield takeEvery('GET_PORTFOLIO', getPortfolioSaga);
+   yield takeEvery('GET_PROJECT_TAGS', projectTagsSaga);
    yield takeEvery('POST_PROJECT', postProjectSaga);
-   yield takeEvery('DELETE_PROJECT', deleteProjectSaga)
+   yield takeEvery('POST_TAGS', postTagsSaga);
+   yield takeEvery('DELETE_PROJECT', deleteProjectSaga);
 }
 
 function* getPortfolioSaga(action){
@@ -33,9 +35,29 @@ function* getPortfolioSaga(action){
    }
 }
 
+function* projectTagsSaga(action){
+   try{
+      const response = yield call(axios.get, `/portfolio/tags/${action.payload}`);
+      yield put({type: 'SET_TAGS_REDUCER', payload: response.data})
+   }
+   catch (error) {
+      console.log('GET request to /portfolio/tags UNSUCCESSFUL:', error);
+   }
+}
+
 function* postProjectSaga(action) {
    try {
       yield call(axios.post, '/portfolio/', action.payload);
+      yield put({type: 'GET_PORTFOLIO'});
+  }
+  catch (error) {
+      console.log('POST request to /portfolio UNSUCCESSFUL:', error);
+  }
+}
+
+function* postTagsSaga(action) {
+   try {
+      yield call(axios.post, '/portfolio/tags', action.payload);
       yield put({type: 'GET_PORTFOLIO'});
   }
   catch (error) {
@@ -69,7 +91,7 @@ const portfolio = (state = [], action) => {
 // Used to store the project tags (e.g. 'React', 'jQuery', 'Angular', 'Node.js')
 const tags = (state = [], action) => {
     switch (action.type) {
-        case 'SET_TAGS':
+        case 'SET_TAGS_REDUCER':
             return action.payload;
         default:
             return state;

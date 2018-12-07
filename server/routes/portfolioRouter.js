@@ -4,9 +4,47 @@ const pool = require('../modules/pool');
 
 router.get('/', (req, res) =>{
    //const sqlText = 'SELECT * FROM projects';
+   const portfolioArr = [];
    const sqlText = `SELECT projects.*, tags.name as tag
-   FROM projects JOIN tags ON projects.tag_id=tags.id`
+   FROM projects JOIN tags ON projects.tag_id=tags.id ORDER BY projects.id` 
    pool.query(sqlText)
+      .then((result) => {
+         res.send(result.rows);
+         //loop thru results.rows
+         // for(let project of result.rows) 
+         // let first = result.rows[0]   
+         // const sqlText = `SELECT pt.*, tags2.name
+         //       FROM project_tags as pt JOIN tags2 ON pt.tag_id=tags2.id
+         //       WHERE pt.project_id=$1;`
+         //    pool.query(sqlText, [first.id])
+         //       .then((tag_results) => {
+         //          //console.log(`****`, tag_results.rows, `****`)
+         //          first.tags = tag_results.rows;
+         //          console.log(`****current project in loop =`, first)
+         //          portfolioArr.push(first)
+         //          console.log('yes', portfolioArr[0].tags);
+         //          res.send(portfolioArr)
+         //       })
+         //       .catch((error) => {
+         //          console.log('Error in inner sql query dealing with project_tags table: ', error)
+         //          res.sendStatus(500);
+         //       })
+         //console.log('yes', portfolioArr);
+         // res.send(portfolioArr)
+      })
+      .catch((error) => {
+         console.log('Error with GET request: ', error)
+         res.sendStatus(500);
+      })
+})
+
+router.get('/tags/:id', (req, res) =>{
+   //const sqlText = 'SELECT * FROM projects';
+   let projectId = req.params.id;
+   const sqlText = `SELECT pt.*, tags2.name
+   FROM project_tags as pt JOIN tags2 ON pt.tag_id=tags2.id
+   WHERE pt.project_id=$1 ORDER BY pt.tag_id;`
+   pool.query(sqlText, [projectId])
       .then((result) => {
          res.send(result.rows);
       })
@@ -36,6 +74,31 @@ router.post('/', (req, res) => {
        console.log('Error POSTing to db:', err);
        res.sendStatus(500);
      });
+ });
+
+ router.post('/tags', (req, res) => {
+   //const newProject = req.body;
+   let projectId = req.body.project_id;
+   let tagsObj = req.body.tagInfo;
+   let entries = Object.values(tagsObj);
+   console.log(projectId)
+   console.log(tagsObj)
+   for(let value of entries){
+      if(typeof value === 'string'){
+         const valueAsNum = Number(value);
+         const queryText = `INSERT INTO project_tags ("project_id", "tag_id")
+                        VALUES (${projectId}, $1)`;
+         pool.query(queryText, [valueAsNum])
+         .then((result) => {
+               console.log('Good!!!')
+               //res.sendStatus(201);
+            })
+         .catch((err) => {
+            console.log('Error POSTing to db:', err);
+            res.sendStatus(500);
+         });
+      }
+   }
  });
 
 router.delete('/', (req, res) => {

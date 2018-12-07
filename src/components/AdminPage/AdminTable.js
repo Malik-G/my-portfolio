@@ -10,6 +10,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
+import EditButton from './EditButton'
 
 
 class AdminTable extends Component {
@@ -48,6 +49,7 @@ class AdminTable extends Component {
                       <TableCell>{project.github}</TableCell>
                       <TableCell>{project.date_completed.substring(0,10)}</TableCell>
                       <TableCell>
+                        <EditButton theProject={project}/>
                         <Button variant="contained" color="secondary" onClick={this.deleteProject(project.id)}>Delete<DeleteIcon></DeleteIcon></Button>
                       </TableCell>
                   </TableRow>
