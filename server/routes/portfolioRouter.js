@@ -5,8 +5,9 @@ const pool = require('../modules/pool');
 router.get('/', (req, res) =>{
    //const sqlText = 'SELECT * FROM projects';
    const portfolioArr = [];
-   const sqlText = `SELECT projects.*, tags.name as tag
-   FROM projects JOIN tags ON projects.tag_id=tags.id ORDER BY projects.id` 
+   const sqlText = `SELECT * FROM projects ORDER BY projects.id;`
+   // `SELECT projects.*, tags.name as tag
+   // FROM projects JOIN tags ON projects.tag_id=tags.id ORDER BY projects.id` 
    pool.query(sqlText)
       .then((result) => {
          res.send(result.rows);
@@ -41,8 +42,8 @@ router.get('/', (req, res) =>{
 router.get('/tags/:id', (req, res) =>{
    //const sqlText = 'SELECT * FROM projects';
    let projectId = req.params.id;
-   const sqlText = `SELECT pt.*, tags2.name
-   FROM project_tags as pt JOIN tags2 ON pt.tag_id=tags2.id
+   const sqlText = `SELECT pt.*, tags.name
+   FROM project_tags as pt JOIN tags ON pt.tag_id=tags.id
    WHERE pt.project_id=$1 ORDER BY pt.tag_id;`
    pool.query(sqlText, [projectId])
       .then((result) => {
@@ -55,8 +56,8 @@ router.get('/tags/:id', (req, res) =>{
 
 router.post('/', (req, res) => {
    //const newProject = req.body;
-   const queryText = `INSERT INTO projects ("name", "description", "thumbnail", "website", "github", "date_completed", "tag_id")
-                     VALUES ($1, $2, $3, $4, $5, $6, $7)`;
+   const queryText = `INSERT INTO projects ("name", "description", "thumbnail", "website", "github", "date_completed")
+                     VALUES ($1, $2, $3, $4, $5, $6)`;
    const queryValues = [
       req.body.name,
       req.body.description,
@@ -64,7 +65,6 @@ router.post('/', (req, res) => {
       req.body.website,
       req.body.github,
       req.body.date_completed,
-      req.body.tag_id,
    ];
    pool.query(queryText, queryValues)
      .then((result) => {
@@ -90,8 +90,8 @@ router.post('/', (req, res) => {
                         VALUES (${projectId}, $1)`;
          pool.query(queryText, [valueAsNum])
          .then((result) => {
-               console.log('Good!!!')
-               //res.sendStatus(201);
+            console.log('Good!!!');
+            //res.sendStatus(201);
             })
          .catch((err) => {
             console.log('Error POSTing to db:', err);
@@ -103,14 +103,24 @@ router.post('/', (req, res) => {
 
 router.delete('/', (req, res) => {
 //console.log(req.query);
-const queryText = 'DELETE FROM projects WHERE id=$1';
+const queryText = 'DELETE FROM project_tags WHERE project_id=$1;';
 pool.query(queryText, [req.query.id])
    .then(() => {
-      res.sendStatus(200);
+      console.log('Project tags deleted!')
+      const queryText = 'DELETE FROM projects WHERE id=$1';
+      pool.query(queryText, [req.query.id])
+         .then(()=>{
+            console.log('Project deleted!');
+            res.sendStatus(200);
+         })
+         .catch((err) => {
+            console.log('Error completing DELETE from projects table', err);
+            res.sendStatus(500);
+         });
    })
    .catch((err) => {
-   console.log('Error completing SELECT plant query', err);
-   res.sendStatus(500);
+      console.log('Error completing DELETE from project tags', err);
+      res.sendStatus(500);
    });
 });
 

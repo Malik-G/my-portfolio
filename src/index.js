@@ -47,7 +47,7 @@ function* projectTagsSaga(action){
 
 function* postProjectSaga(action) {
    try {
-      yield call(axios.post, '/portfolio/', action.payload);
+      yield call(axios.post, '/portfolio', action.payload);
       yield put({type: 'GET_PORTFOLIO'});
   }
   catch (error) {
