@@ -81,6 +81,7 @@ h2 {
 a, a:visited, a:hover, a:active {
    color: inherit;
    font-family: 'Alegreya Sans SC';
+   text-decoration: none;
  }
 
 /* font-family: 'Alegreya Sans SC', sans-serif;
