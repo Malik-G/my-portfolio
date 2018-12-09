@@ -113,4 +113,3 @@ const margin = {
    width: 1000
 }
 export default withRouter(connect(mapReduxStateToProps)(ProjectSection));
-//export default withRouter(connect(mapReduxStateToProps)(withStyles(styling)(ProjectPage)));
