@@ -91,8 +91,8 @@ router.post('/', (req, res) => {
          pool.query(queryText, [valueAsNum])
          .then((result) => {
             console.log('Good!!!');
-            //res.sendStatus(201);
-            })
+            //result.sendStatus(201);
+         })
          .catch((err) => {
             console.log('Error POSTing to db:', err);
             res.sendStatus(500);

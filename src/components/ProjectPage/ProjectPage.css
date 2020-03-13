@@ -1,6 +1,6 @@
-body {
+/* body {
    background-color: rgb(67, 70, 67);
-}
+} */
 
 /* .container {
    margin-top: 20px;
@@ -9,7 +9,7 @@ body {
    min-width: 650px;
 } */
 
-.header {
+/* .header {
    font-size: 80px;
    color: grey;
 }
@@ -31,16 +31,6 @@ body {
    color: tomato
 }
 
-.expansionPanel {
-   /* margin-left: 100px;
-   margin-right: 100px;
-   min-width: 650px; */
-   font-family: 'Abel', sans-serif;
-}
-
-.panelSummary {
-   /* border: 2px solid goldenrod; */
-}
 
 .screenshot {
    height: 300px;
@@ -60,10 +50,10 @@ h1 {
 
 h2 {
    font-weight: bold;
-   /* text-decoration: underline; */
+   text-decoration: underline;
 }
 
-.panelDetails {
+ .panelDetails {
    background-color: rgb(67, 70, 67);
    font-family: 'Abel', sans-serif;
 }
@@ -82,7 +72,7 @@ a, a:visited, a:hover, a:active {
    color: inherit;
    font-family: 'Alegreya Sans SC';
    text-decoration: none;
- }
+ } */
 
 
 /* font-family: 'Nothing You Could Do', cursive;

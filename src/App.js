@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import ProjectPage from '../ProjectPage/ProjectPage';
-import AdminPage from '../AdminPage/AdminPage';
-import './App.css';
+import ProjectPage from './components/ProjectPage/ProjectPage';
+import AdminPage from './components/AdminPage/AdminPage';
+import './styles/App.css';
 
 class App extends Component {
   

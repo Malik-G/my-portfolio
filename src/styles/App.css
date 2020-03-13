@@ -1,0 +1,165 @@
+body, html {
+	background-color: rgb(67, 70, 67);
+	
+}
+.container{
+	/* height: 100%; */
+}
+
+.myPic {
+   border-radius: 50%;
+   /* height: 150px;
+   width: 200px; */
+   margin-top: 40px;
+   margin-left: 'auto';
+   margin-right: 'auto';
+}
+
+.App {
+  text-align: center;
+}
+
+.project-section {
+	display: inline-block;
+	width: 100%;
+}
+
+.float-left{
+	float:left;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: black;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.header {
+   font-size: 80px;
+   color: grey;
+}
+
+.colorOrange{
+   color: orange;
+}
+
+.colorSeaGreen {
+   color: seagreen
+   
+}
+
+.colorLightBlue {
+   color: lightblue  
+}
+
+.colorTomato {
+   color: tomato
+}
+
+
+.screenshot {
+   height: 300px;
+   width: 400px;
+}
+
+.projectName{
+   margin: auto auto;
+   font-size: 40px;
+   color:black
+}
+
+h1 {
+   color: black;
+   font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+h2 {
+   font-weight: bold;
+   /* text-decoration: underline; */
+}
+
+.panelDetails {
+   background-color: rgb(67, 70, 67);
+   font-family: 'Abel', sans-serif;
+}
+
+.infoContainer {
+   max-width: 400px;
+   color:cadetblue;
+   margin: auto;
+   padding: 5px;
+   background: rgb(15,20,20);
+   text-decoration: none;
+   /* float:left */
+}
+
+
+.parallax-stpaul{
+	background-image: url("../images/stpaul_night.jpg");
+	height: 100vh;
+	width: 100vw; 
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.parallax-reciperiot{
+	background-image: url("../images/recipe-riot-home.png");
+	height: 100vh;
+	width: 100vw; 
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.parallax-rgb{
+	background-image: url("../images/rgb_game.png");
+	height: 100vh;
+	width: 100vw;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.parallax-todo{
+	background-image: url("../images/todo_site.png");
+	height: 100vh;
+	width: 100vw; 
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.parallax-book{
+	background-image: url("../images/Screen Shot 2020-03-12 at 7.04.39 PM.png");
+	height: 100vh;
+	width: 100vw; 
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+a, a:visited, a:hover, a:active {
+   color: inherit;
+   font-family: 'Alegreya Sans SC';
+   text-decoration: none;
+ }
+
+
+/* font-family: 'Nothing You Could Do', cursive;
+font-family: 'Syncopate', sans-serif; */

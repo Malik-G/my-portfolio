@@ -102,6 +102,7 @@ class EditButton extends Component {
                      <FormGroup>
                         <FormControl >
                         <div className={classes.inlineBlock}>
+                  
                   <FormControlLabel
                      control={<Checkbox checked={javascript} onChange={this.handleChange} value="1" />}
                      label="javascript"
