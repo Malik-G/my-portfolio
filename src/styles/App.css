@@ -1,102 +1,107 @@
-body, html {
-	background-color: rgb(67, 70, 67);
-	
+
+body {
+  height: 100%;
+  width:100%;
+  margin: 0;
+  overflow-x: hidden;
+	/* background-color: rgb(67, 70, 67); */
 }
-.container{
-	/* height: 100%; */
+a, a:visited, a:hover, a:active {
+   color: inherit;
+   font-family: 'Alegreya Sans SC';
+   text-decoration: none;
+}
+h1 {
+   color: black;
+   
+   font-family: 'Alegreya Sans SC', sans-serif;
+   font-size: 3em;
+   margin-top: 5%;
 }
 
-.myPic {
-   border-radius: 50%;
-   /* height: 150px;
-   width: 200px; */
-   margin-top: 40px;
-   margin-left: 'auto';
-   margin-right: 'auto';
-}
 
+
+.thebox{
+max-width:1000px;
+max-height:700px;
+}
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
-
-.project-section {
-	display: inline-block;
-	width: 100%;
-}
-
-.float-left{
-	float:left;
-}
-
 .App-header {
   background-color: #222;
   height: 150px;
   padding: 20px;
   color: black;
 }
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
+/* .App-intro {
   font-size: large;
-}
+} */
+/* .App-title {
+  font-size: 1.5em;
+} */
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.bio-container{
+	height: 102vh;
+	width: 100vw;
+	/* background: rgb(47, 50, 53); */
+  background: white;
+  margin-top:0px;
+	/* opacity:0.5; */
+	/* display:block; */
 }
-
+.bio-text{
+	justify-content: center;
+	width: 40%;
+	height: auto;
+	overflow: visible;
+}
+/* .colorOrange{
+   color: orange;
+}
+.colorSeaGreen {
+   color: rgb(59, 168, 106)
+}
+.colorLightBlue {
+   color: lightblue  
+}
+.colorTomato {
+   color: tomato
+} */
+.container{
+	/* height: 100%; */
+}
+.float-left{
+	float:left;
+	border: 1px solid red;
+}
+.github-div{
+	width: 25%;
+	height:50%;
+}
+.github-logo{
+	/* margin-left:5%; */
+	height: 100px;
+	width: 100px;
+	position:absolute;
+	margin-left:8%;
+}
 .header {
    font-size: 80px;
    color: grey;
 }
-
-.colorOrange{
-   color: orange;
+.header-content{
+	min-width:100%;
+	/* height:100vw; */
+	display: grid;
+	grid-template-columns: 3;
+	border: 1px solid red;
+	position: relative;
+	top:0px;
+	left:0px;
+	position: absolute;
+	/* background-attachment: unset; */
 }
-
-.colorSeaGreen {
-   color: seagreen
-   
-}
-
-.colorLightBlue {
-   color: lightblue  
-}
-
-.colorTomato {
-   color: tomato
-}
-
-
-.screenshot {
-   height: 300px;
-   width: 400px;
-}
-
-.projectName{
-   margin: auto auto;
-   font-size: 40px;
-   color:black
-}
-
-h1 {
-   color: black;
-   font-family: 'Alegreya Sans SC', sans-serif;
-}
-
-h2 {
-   font-weight: bold;
-   /* text-decoration: underline; */
-}
-
-.panelDetails {
-   background-color: rgb(67, 70, 67);
-   font-family: 'Abel', sans-serif;
-}
-
 .infoContainer {
    max-width: 400px;
    color:cadetblue;
@@ -106,28 +111,79 @@ h2 {
    text-decoration: none;
    /* float:left */
 }
-
-
-.parallax-stpaul{
-	background-image: url("../images/stpaul_night.jpg");
+.infoContainer-outer{
+	/* margin-top:10%; */
+	/* top:30%; */
+	position:relative;
+}
+.left{
+	top:10px;
+	left: 100px;
+}
+.myPic {
+  border-radius: 50%;
+  /* height: 200px;
+  width: 200px; */
+  height: 7em;
+  width: 8em;
+  margin: 0;
+  /* justify-self: center; */
+	/* position: fixed; */
+	/* z-index:-1; */
+	/* background-attachment: fixed; */
+}
+.panelDetails {
+   background-color: rgb(67, 70, 67);
+   font-family: 'Abel', sans-serif;
+}
+.parallax-stpaul-main{
+	/* background-image: url("../images/stpaul_night.jpg"); */
+	background-image: url("../internal-images/stpaul_night.png");
 	height: 100vh;
 	width: 100vw; 
-	background-attachment: fixed;
-	background-position: center;
+	/* background-attachment: fixed; */
+  background-position: center;
+	/* background-position: -50px center; */
+  /* background-position-x: 1px; */
+	background-repeat: no-repeat;
+  background-size: cover;
+	/* background-size: 90vw 90vh; */
+	z-index:-1;
+	position: fixed;
+	top:0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* grid-template-rows: max-content; */
+	/* left:0px; */
+	/* display: inline-block; */
+}
+.parallax-stpaul-trans{
+	background-image: url("../internal-images/stpaul_night8.png");
+	height: 100vh;
+	width: 100vw;
+	/* background-attachment: fixed; */
+  background-position: center;
+	/* background-position: center; */
 	background-repeat: no-repeat;
 	background-size: cover;
+	/* top:0px;*/
+	/* left:0px; */
+	/* background-attachment: scroll; */
+	/* position: fixed; */
+	/* display: inline-block; */
 }
 .parallax-reciperiot{
-	background-image: url("../images/recipe-riot-home.png");
+	background: url("../internal-images/recipe-riot-home.png");
 	height: 100vh;
 	width: 100vw; 
 	background-attachment: fixed;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	
 }
 .parallax-rgb{
-	background-image: url("../images/rgb_game.png");
+	background-image: url("../internal-images/rgb_game.png");
 	height: 100vh;
 	width: 100vw;
 	background-attachment: fixed;
@@ -136,7 +192,7 @@ h2 {
 	background-size: cover;
 }
 .parallax-todo{
-	background-image: url("../images/todo_site.png");
+	background-image: url("../internal-images/todo_site.png");
 	height: 100vh;
 	width: 100vw; 
 	background-attachment: fixed;
@@ -145,7 +201,7 @@ h2 {
 	background-size: cover;
 }
 .parallax-book{
-	background-image: url("../images/Screen Shot 2020-03-12 at 7.04.39 PM.png");
+	background-image: url("../internal-images/bookcollection.png");
 	height: 100vh;
 	width: 100vw; 
 	background-attachment: fixed;
@@ -153,13 +209,50 @@ h2 {
 	background-repeat: no-repeat;
 	background-size: cover;
 }
-
-a, a:visited, a:hover, a:active {
-   color: inherit;
-   font-family: 'Alegreya Sans SC';
-   text-decoration: none;
- }
-
-
+.portfolio{
+  	background: rgb(47, 50, 53);
+}
+.projectName{
+   margin: auto auto;
+   font-size: 40px;
+   color:black
+}
+.project-section {
+	display: inline-block;
+	width: 100%;
+}
+.title{
+	position:absolute;
+	background-attachment: fixed;
+}
+@media screen and (min-width: 570px) {
+  h1 {
+     font-size: 3em;
+  }
+    .my-pic{
+    height: 9em;
+  width: 10em;
+  }
+}
+@media screen and (min-width: 760px) {
+  h1 {
+     font-size: 4em;
+  }
+  .myPic{
+    height: 10em;
+  width: 11em;
+  }
+}
+@media screen and (min-width: 950px) {
+  h1 {
+     font-size: 5em;
+  }
+  .myPic{
+    height: 30em;
+  width: 35em;
+  opacity: 0.7;
+  margin: -100px;
+  }
+}
 /* font-family: 'Nothing You Could Do', cursive;
 font-family: 'Syncopate', sans-serif; */
