@@ -1,9 +1,25 @@
 body {
    /* background-color: rgb(67, 70, 67); */
 }
-.big-font{
+.big-font, #bio-header, #portfolio-header{
 	width:100%;
   margin: auto;
+  text-align: center;
+}
+.bio-container{
+	height: 102vh;
+	width: 100vw;
+  background: white;
+  margin-top:0px;
+}
+#bio-container-content{
+  widows: 100vw;
+  height:90vh;
+}
+#bio-header{
+  color:rgb(72, 107, 202);
+  padding-top:5%;
+  padding-bottom:5%;
 }
 .colorOrange{
   color: orange;
@@ -18,12 +34,22 @@ body {
   color: tomato
 }
 #flip-note {
-  font-family: fantasy;
+  font-family: 'Alegreya Sans SC';
+  font-size: 1.2em;
+  letter-spacing: 1px;
   background-color: transparent;
-  width: 15em;
-  height: 60vh;
+  width: 20em;
+  height: 60%;
   perspective: 1000px;
   margin: auto;
+  
+  font-weight: bold;
+  /* font-family: 'Amatic SC'; */
+  /* font-family: 'Covered By Your Grace'; */
+  font-family: 'Permanent Marker', cursive;
+  /* font-family: 'Sue Ellen Francisco', cursive; */
+  /* font-family: 'Walter Turncoat', cursive; */
+  /* font-family: 'Squada One', cursive; */
 }
 #flip-note-inner {
   position: relative;
@@ -32,7 +58,8 @@ body {
   text-align: center;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 18px 22px 22px -14px rgba(0,0,0,0.39);
+  /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
 }
 #flip-note-front, #flip-note-back {
   background:rgb(250, 250, 250);
@@ -42,16 +69,62 @@ body {
   height: 100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  justify-content: left;
+  text-align: left;
+  
+  overflow: auto;
 }
 #flip-note-front {
   /*background-color: #bbb; */
   /* justify-content: left; */
+  padding-left: 3%;
 }
 #flip-note-back {
   /* background-color: #2980b9; */
+  /* margin-left: -20%; */
+  /* padding-left: -3%; */
   transform: rotateY(180deg);
 }
+#name-header{
+  /* color: tomato; */
+  color: rgb(230, 160, 30);
+  font-family: 'Alegreya Sans SC', sans-serif;
+  /* font-family: 'Amatic SC'; */
+  /* font-family: 'Covered By Your Grace'; */
+  /* font-family: 'Dokdo', cursive; */
+  /* font-family: 'Nanum Brush Script', cursive; */
+  /* font-family: 'Permanent Marker', cursive; */
+  /* font-family: 'Sue Ellen Francisco', cursive; */
+  /* font-family: 'Walter Turncoat', cursive; */
+}
+.note-back-body{
+  /* font-family: 'Walter Turncoat', cursive; */
+  /* font-family: 'Covered By Your Grace'; */
+  font-family: 'Cutive Mono', monospace;
+  /* font-family: 'Squada One', cursive; */
+}
+#portfolio{
+  	/* background: rgb(47, 50, 53); */
+  background: white;
+  height: 102vh;
+}
+#portfolio-header{
+  color: white;
+}
+#social-links{
+  width: 100vh;
+  height: 25vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: auto;
+}
+#social-links img{
+  height: 200px;
+  width: 200px;
+}
+/* .social-link{
+  float:left;
+} */
+
 /* #greeting{
   justify-content: left;
   width:40%;
