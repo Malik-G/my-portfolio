@@ -32,32 +32,63 @@ class ProjectPage extends Component {
 
   componentDidMount() {
     this.props.dispatch({ type: 'GET_PORTFOLIO' })
-    const t1 = gsap.timeline()
-    
+    const portfolioTimeline = gsap.timeline()
+    portfolioTimeline.from("#portfolio-header", { opacity: 0 })
+      .from("#cardswap", { xPercent: 105, opacity: 0, ease: "circ.out" }, "-=0.5")
+      .from("#reciperiot", { xPercent: -105, opacity: 0, ease: "circ.out" }, "+=2.5")
+      .from("#todo", { xPercent: 105, opacity: 0, ease: "circ.out" }, "+=2.5") 
+    // // .from("#cardswap-img", { opacity: 0 })
+    // .from([ "#cardswap-text", "#cardswap-links"], { opacity: 0.5 })
+    //.from("#cardswap-links", { opacity: 0 })
+
+    ScrollTrigger.create({
+      animation: portfolioTimeline,
+      trigger: "#portfolio-container",//this.state.portfolioContainer,
+      start: "top +=40%",
+      end: "top -=110%",
+      // end: "bottom +=10%",
+      scrub: true,
+      markers: true
+    })
+
     gsap.to(this.state.bioContainer, {
       background: 'rgb(45, 45, 45)',
-      // duration: 5,
       scrollTrigger: {
-        trigger: ".bio-container", //this.state.bioContainer,
+        trigger: "#bio-container", //this.state.bioContainer,
         start: "top top",
         end: "bottom top",
         scrub: true,
         markers: true
-      }
+      },
     })
-    
+
     gsap.to(this.state.portfolioContainer, {
       background: 'rgb(45, 45, 45)',
-      // duration: 5,
       scrollTrigger: {
-        trigger: ".bio-container", //this.state.bioContainer,
+        trigger: "#bio-container", //this.state.bioContainer,
         start: "top top",
-        end:"bottom top",
+        end: "bottom top",
         scrub: true,
-        markers: true
-      }
+        markers: true,
+      },
     })
-    
+
+
+    // gsap.to(this.state.portfolioContainer, {
+    //   // background: 'rgb(45, 45, 45)',
+    //   // marginBottom:0,
+    //   scrollTrigger: {
+    //     animation: portfolioTimeline,
+    //     trigger: "#portfolio-container", //this.state.bioContainer,
+    //     start: "top top",
+    //     end: "bottom top",
+    //     // pin: true,
+    //     // pinSpacing: false,
+    //     scrub: true,
+    //     markers: true,
+    //   }
+    // })
+
     //this.props.dispatch({type: 'GET_PROJECT_TAGS', payload: 1})
     //this.getPortfolio();
   }
@@ -103,7 +134,7 @@ class ProjectPage extends Component {
 
         <div className="parallax-stpaul-trans"></div>
 
-        <div className="bio-container" ref={div => this.state.bioContainer = div}>
+        <div id="bio-container" ref={div => this.state.bioContainer = div}>
           <h1 id="bio-header">Bio</h1>
           <div id="flip-note" onClick={this.flip}>
             <div id="flip-note-inner">
@@ -111,7 +142,7 @@ class ProjectPage extends Component {
                 <p id="greeting">Dear visitor,</p>
                 <p>Welcome! My name is Malik.</p>
                 <p>I am a software developer from Saint Paul, Minnesota.</p>
-                <p>Well...I won't force you to read my bio.</p>
+                <p>I won't force you to read my bio.</p>
                 <p> Click this message if you care to know more.</p>
               </div>
               <div id="flip-note-back">
@@ -165,26 +196,100 @@ class ProjectPage extends Component {
           </div>
         </div>
 
-        <div id="portfolio" ref={div => this.state.portfolioContainer = div}>
+        <div id="portfolio-container" ref={div => this.state.portfolioContainer = div}>
           <h1 id="portfolio-header">Portfolio</h1>
-          {/* <h1 className="big-font">
-            <span className="colorSeaGreen"> Po</span>
-            <span className="colorOrange">rt</span>
-            <span className="colorLightBlue">fo</span>
-            <span className="colorTomato">lio</span>
-          </h1> */}
+          <div id="cardswap" className="project-container">
+            <img id="cardswap-img" className="project-img" src="https://firebasestorage.googleapis.com/v0/b/photo-storage-96fec.appspot.com/o/Screen%20Shot%202018-12-07%20at%206.04.45%20PM.png?alt=media&token=86a85405-b336-4e63-a9fa-b2f1256d1654" alt="" />
+            <h2 id="cardswap-header" className="project-header">CardSwap</h2>
+            <div id="cardswap-text" className="description">
+              <text>
+                This website is what I chose to create for my solo project at Prime Digital Academy.
+                It was made to eventually be an extension of an already existing e-commerce site called CardsAwaySports.
+                CardSwap is still in development, with messaging and a payment method being the major priorities in future releases.
+                To explore the app, login with <span className="highlight">USERNAME: malik</span> and <span className="highlight">PASSWORD: malikg1</span> or register a new account.
+              </text>
+            </div>
+            <div id="cardswap-links" className="project-links">
+              <a href="https://github.com/Malik-G/solo-project-cs" rel="noopener noreferrer" target="_blank"><Button id="cardswap-github" className="link" variant="contained" color="primary">CODE ON GITHUB</Button></a>
+              <a href="https://young-sea-76614.herokuapp.com/#/home" rel="noopener noreferrer" target="_blank"><Button id="cardswap-site" className="link" variant="contained" color="default">WEBSITE</Button></a>
+            </div>
+            <div id="cardswap-techs" className="project-techs">
+              <p>JavaScript | Node | Express | React | Redux | Material-UI | PostgreSQL | Firebase | Heroku</p>
+            </div>
+          </div>
+          <hr />
+          <div id="reciperiot" className="project-container">
+            <img id="reciperiot-img" className="project-img" src="https://firebasestorage.googleapis.com/v0/b/photo-storage-96fec.appspot.com/o/Screen%20Shot%202020-02-14%20at%205.44.20%20PM.png?alt=media&token=3192ddef-ce9c-4ac7-a6e4-5a72fc1cc5d2" alt="" />
+            <h2 id="reciperiot-header" className="project-header">Recipe Riot</h2>
+            <div id="reciperiot-text" className="description">
+              <text>
+                This is a proof of concept recipe website that pulls data from multiple APIs based on a keyword search.
+                At the moment, the searches return a limited amount of results due to the costs of making requests to these different APIs.
+                There are still a few features that I would like to implement - mainly pagination and some styling choices. When you visit the site, FEEL FREE TO INTERACT with any of the Sources.
+              </text>
+            </div>
+            <div id="reciperiot-links" className="project-links">
+              <a href="https://github.com/Malik-G/recipe-site/" rel="noopener noreferrer" target="_blank"><Button id="reciperiot-github" className="link" variant="contained" color="primary">CODE ON GITHUB</Button></a>
+              <a href="https://powerful-sea-84064.herokuapp.com/" rel="noopener noreferrer" target="_blank"><Button id="reciperiot-site" className="link" variant="contained" color="default">WEBSITE</Button></a>
+            </div>
+            <div id="reciperiot-techs" className="project-techs">
+              <p>JavaScript | Node | Express | React | Redux | Material-UI | Heroku</p>
+            </div>
+          </div>
+          <hr />
+          <div id="todo" className="project-container">
+            <img id="todo-img" className="project-img" src="https://firebasestorage.googleapis.com/v0/b/photo-storage-96fec.appspot.com/o/to_do_list.png?alt=media&token=8452492b-ee09-42af-a980-c2018539edb1" alt="" />
+            <h2 id="todo-header" className="project-header">To-Do App</h2>
+            <div id="todo-text" className="description">
+              <text>
+                Here's a classic! This is my first fullstack to-do list. I know some say you shouldn't have a to-do app
+                on your portfolio, but hey. User authentication and some UI upgrades will be the next features
+                added to this project. Give it a try.
+              </text>
+            </div>
+            <div id="todo-links" className="project-links">
+              <a href="https://github.com/Malik-G/to-do-list" rel="noopener noreferrer" target="_blank"><Button id="todo-github" className="link" variant="contained" color="primary">CODE ON GITHUB</Button></a>
+              <a href="https://obscure-ridge-59300.herokuapp.com/" rel="noopener noreferrer" target="_blank"><Button id="todo-site" className="link" variant="contained" color="default">WEBSITE</Button></a>
+            </div>
+            <div id="todo-techs" className="project-techs">
+              <p>JavaScript | Node | Express | jQuery | Bootstrap | PostgreSQL | Heroku</p>
+            </div>
+          </div>
+          <hr />
+          <div id="todo" className="project-container">
+            <img id="todo-img" className="project-img" src="https://firebasestorage.googleapis.com/v0/b/photo-storage-96fec.appspot.com/o/to_do_list.png?alt=media&token=8452492b-ee09-42af-a980-c2018539edb1" alt="" />
+            <h2 id="todo-header" className="project-header">To-Do App</h2>
+            <div id="todo-text" className="description">
+              <text>
+                Here's a classic! This is my first fullstack to-do list. I know some say you shouldn't have a to-do app
+                on your portfolio, but hey. User authentication and some UI upgrades will be the next features
+                added to this project. Give it a try.
+              </text>
+            </div>
+            <div id="todo-links" className="project-links">
+              <a href="https://github.com/Malik-G/to-do-list" rel="noopener noreferrer" target="_blank"><Button id="todo-github" className="link" variant="contained" color="primary">CODE ON GITHUB</Button></a>
+              <a href="https://obscure-ridge-59300.herokuapp.com/" rel="noopener noreferrer" target="_blank"><Button id="todo-site" className="link" variant="contained" color="default">WEBSITE</Button></a>
+            </div>
+            <div id="todo-techs" className="project-techs">
+              <p>JavaScript | Node | Express | jQuery | Bootstrap | PostgreSQL | Heroku</p>
+            </div>
+          </div>
+        </div>
+       
+
+        <div id="social-container">
+          <h1 id="social-header">My Social</h1>
           <div id="social-links">
-            <div>
-              <a id="github-link" className="social-link" href="https://github.com/Malik-G" rel="noopener noreferrer" target="_blank"><img src="images/github-logo-medium.png" />
+            <div className="social-link">
+              <a id="github-link" href="https://github.com/Malik-G" rel="noopener noreferrer" target="_blank"><img src="images/github-logo-medium.png" />
               </a>
               <h3>GitHub</h3>
             </div>
-            <div>
-              <a id="linkedin-link" className="social-link" href="https://www.linkedin.com/in/malik-glass-9b7533104/" rel="noopener noreferrer" target="_blank"><img src="images/linkedin-logo3.png" />
+            <div className="social-link">
+              <a id="linkedin-link" href="https://www.linkedin.com/in/malik-glass-9b7533104/" rel="noopener noreferrer" target="_blank"><img className="social-link" src="images/linkedin-logo3.png" />
               </a>
               <h3>LinkedIn</h3>
             </div>
-            
           </div>
         </div>
 
