@@ -32,24 +32,30 @@ class ProjectPage extends Component {
 
   componentDidMount() {
     this.props.dispatch({ type: 'GET_PORTFOLIO' })
-    const portfolioTimeline = gsap.timeline()
-    portfolioTimeline.from("#portfolio-header", { opacity: 0 })
-      .from("#cardswap", { xPercent: 105, opacity: 0, ease: "circ.out" }, "-=0.5")
-      .from("#reciperiot", { xPercent: -105, opacity: 0, ease: "circ.out" }, "+=2.5")
-      .from("#todo", { xPercent: 105, opacity: 0, ease: "circ.out" }, "+=2.5") 
-    // // .from("#cardswap-img", { opacity: 0 })
-    // .from([ "#cardswap-text", "#cardswap-links"], { opacity: 0.5 })
-    //.from("#cardswap-links", { opacity: 0 })
+    // const portfolioTimeline = gsap.timeline()
+    // portfolioTimeline.from("#portfolio-header", { autoalpha: 0.1 })
+    //   .from("#cardswap", { xPercent: 105, autoalpha: 0, ease: "circ.out" }, ">-0.4") //">-0.7"
+    //   .from("#reciperiot", { xPercent: -105, autoalpha: 0, ease: "circ.out" }, ">0.3")
+    //   .from("#todo", { xPercent: 105, autoalpha: 0, ease: "circ.out" }, ">0.2")
+    //   .from("#bookkeeper", { xPercent: -105, autoalpha: 0, ease: "circ.out" })
 
-    ScrollTrigger.create({
-      animation: portfolioTimeline,
-      trigger: "#portfolio-container",//this.state.portfolioContainer,
-      start: "top +=40%",
-      end: "top -=110%",
-      // end: "bottom +=10%",
-      scrub: true,
-      markers: true
-    })
+    // ScrollTrigger.create({
+    //   animation: portfolioTimeline,
+    //   trigger: "#portfolio-container",//this.state.portfolioContainer,
+    //   start: "top +=60%",
+    //   end: "top -=225%",
+    //   // end: "bottom +=10%",
+    //   scrub: true,
+    //   markers: true
+    // })
+
+    ScrollTrigger.batch(".project-container", {
+      //interval: 0.1, // time window (in seconds) for batching to occur. 
+      onEnter: batch => gsap.to(batch, { opacity: 1, x: 0, overwrite: true }),
+      onLeave: batch => gsap.set(batch, { opacity: 0, x: -100, overwrite: true }),
+      onEnterBack: batch => gsap.to(batch, { opacity: 1, x: 0, stagger: 0.15, overwrite: true }),
+      onLeaveBack: batch => gsap.set(batch, { opacity: 0, x: 100, overwrite: true })
+    });
 
     gsap.to(this.state.bioContainer, {
       background: 'rgb(45, 45, 45)',
@@ -73,17 +79,13 @@ class ProjectPage extends Component {
       },
     })
 
-
-    // gsap.to(this.state.portfolioContainer, {
-    //   // background: 'rgb(45, 45, 45)',
-    //   // marginBottom:0,
+    // gsap.from(".project-container", {
+    //   xPercent: 105, autoalpha: 0, ease: "circ.out", 
     //   scrollTrigger: {
-    //     animation: portfolioTimeline,
-    //     trigger: "#portfolio-container", //this.state.bioContainer,
-    //     start: "top top",
-    //     end: "bottom top",
-    //     // pin: true,
-    //     // pinSpacing: false,
+    //     // animation: portfolioTimeline,
+    //     trigger: ".project-container", //this.state.bioContainer,
+    //     start: "top bottom",
+    //     end: "bottom center",
     //     scrub: true,
     //     markers: true,
     //   }
@@ -203,15 +205,20 @@ class ProjectPage extends Component {
             <h2 id="cardswap-header" className="project-header">CardSwap</h2>
             <div id="cardswap-text" className="description">
               <text>
-                This website is what I chose to create for my solo project at Prime Digital Academy.
+                This app is what I chose to create for my solo project at Prime Digital Academy.
                 It was made to eventually be an extension of an already existing e-commerce site called CardsAwaySports.
                 CardSwap is still in development, with messaging and a payment method being the major priorities in future releases.
                 To explore the app, login with <span className="highlight">USERNAME: malik</span> and <span className="highlight">PASSWORD: malikg1</span> or register a new account.
               </text>
             </div>
             <div id="cardswap-links" className="project-links">
-              <a href="https://github.com/Malik-G/solo-project-cs" rel="noopener noreferrer" target="_blank"><Button id="cardswap-github" className="link" variant="contained" color="primary">CODE ON GITHUB</Button></a>
-              <a href="https://young-sea-76614.herokuapp.com/#/home" rel="noopener noreferrer" target="_blank"><Button id="cardswap-site" className="link" variant="contained" color="default">WEBSITE</Button></a>
+              {/* <a href="https://github.com/Malik-G/solo-project-cs" rel="noopener noreferrer" target="_blank"><Button id="cardswap-github" className="link" variant="contained" color="primary">CODE ON GITHUB</Button></a> */}
+              <div className="link" >
+                <a href="https://github.com/Malik-G" title="Github Link" rel="noopener noreferrer" target="_blank"><img id="cardswap-github" src="images/github-logo-gold.png" /></a>
+              </div>
+              <div className="link">
+                <a href="https://young-sea-76614.herokuapp.com/#/home" title="CardSwap Website" rel="noopener noreferrer" target="_blank"><img id="cardswap-site" src="images/web-logo.png" /></a>
+              </div>
             </div>
             <div id="cardswap-techs" className="project-techs">
               <p>JavaScript | Node | Express | React | Redux | Material-UI | PostgreSQL | Firebase | Heroku</p>
@@ -223,7 +230,7 @@ class ProjectPage extends Component {
             <h2 id="reciperiot-header" className="project-header">Recipe Riot</h2>
             <div id="reciperiot-text" className="description">
               <text>
-                This is a proof of concept recipe website that pulls data from multiple APIs based on a keyword search.
+                This is a proof of concept recipe app that pulls data from multiple APIs based on a keyword search.
                 At the moment, the searches return a limited amount of results due to the costs of making requests to these different APIs.
                 There are still a few features that I would like to implement - mainly pagination and some styling choices. When you visit the site, FEEL FREE TO INTERACT with any of the Sources.
               </text>
@@ -256,21 +263,19 @@ class ProjectPage extends Component {
             </div>
           </div>
           <hr />
-          <div id="todo" className="project-container">
-            <img id="todo-img" className="project-img" src="https://firebasestorage.googleapis.com/v0/b/photo-storage-96fec.appspot.com/o/to_do_list.png?alt=media&token=8452492b-ee09-42af-a980-c2018539edb1" alt="" />
-            <h2 id="todo-header" className="project-header">To-Do App</h2>
-            <div id="todo-text" className="description">
+          <div id="bookkeeper" className="project-container">
+            <img id="bookkeeper-img" className="project-img" src="https://firebasestorage.googleapis.com/v0/b/photo-storage-96fec.appspot.com/o/book_list.png?alt=media&token=c89c195f-4180-4ec3-89b2-5ac62ea38d10" alt="" />
+            <h2 id="bookkeeper-header" className="project-header">Book Keeper</h2>
+            <div id="bookkeeper-text" className="description">
               <text>
-                Here's a classic! This is my first fullstack to-do list. I know some say you shouldn't have a to-do app
-                on your portfolio, but hey. User authentication and some UI upgrades will be the next features
-                added to this project. Give it a try.
+                This is another one of my early fullstack CRUD projects. It is a app that allows users to enter basic information about a book. Upgrades to this app will include user authentication for personal book collections, connection to an API to search for books by keyword, and a mechanism for users to record notes on a given book.
               </text>
             </div>
-            <div id="todo-links" className="project-links">
-              <a href="https://github.com/Malik-G/to-do-list" rel="noopener noreferrer" target="_blank"><Button id="todo-github" className="link" variant="contained" color="primary">CODE ON GITHUB</Button></a>
-              <a href="https://obscure-ridge-59300.herokuapp.com/" rel="noopener noreferrer" target="_blank"><Button id="todo-site" className="link" variant="contained" color="default">WEBSITE</Button></a>
+            <div id="bookkeeper-links" className="project-links">
+              <a href="https://github.com/Malik-G/book-keeper-app" rel="noopener noreferrer" target="_blank"><Button id="bookkeeper-github" className="link" variant="contained" color="primary">CODE ON GITHUB</Button></a>
+              <a href="https://thawing-sands-98647.herokuapp.com/" rel="noopener noreferrer" target="_blank"><Button id="bookkeeper-site" className="link" variant="contained" color="default">WEBSITE</Button></a>
             </div>
-            <div id="todo-techs" className="project-techs">
+            <div id="bookkeeper-techs" className="project-techs">
               <p>JavaScript | Node | Express | jQuery | Bootstrap | PostgreSQL | Heroku</p>
             </div>
           </div>
@@ -290,6 +295,7 @@ class ProjectPage extends Component {
               </a>
               <h3>LinkedIn</h3>
             </div>
+            <h4>EMAIL: malikglass11@gmail.com</h4>
           </div>
         </div>
 

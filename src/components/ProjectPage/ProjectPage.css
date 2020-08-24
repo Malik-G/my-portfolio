@@ -14,7 +14,6 @@ hr {
   background-image: -webkit-linear-gradient(left, rgb(45, 45, 45), tomato, goldenrod, forestgreen, rgb(45, 45, 45));
   background-image: -moz-linear-gradient(left, tomato, goldenrod, forestgreen);
 }
-
 .big-font, #bio-header, #portfolio-header, #social-header{
 	/* width:100%; */
   margin: auto;
@@ -51,14 +50,21 @@ hr {
     "links links desc desc"
     "techs techs techs techs";
 } */
-
-#cardswap-github, #cardswap-site,
+#cardswap-github{
+  width:100px;
+  height:50px;
+}
+#cardswap-site{
+  width:80px;
+  height:50px;
+}
 #reciperiot-github, #reciperiot-site,
 #todo-github, #todo-site{
 margin-top: 20px;
 margin-left: 5px;
 margin-right: 5px;
 }
+
 .colorOrange{
   color: orange;
 }
@@ -133,11 +139,24 @@ margin-right: 5px;
 .highlight{
   color: goldenrod;
 }
-/* .link {
-margin-top: 20px;
-margin-left: 5px;
-margin-right: 5px;
-} */
+
+.link{
+  width:100px;
+  height:50px;
+  margin-top: 20px;
+  margin-left: 15px;
+  margin-right: 15px;
+  border: 2px solid rgb(150, 150, 150);
+  border-radius: 20%;
+  justify-self:start;
+  text-align: center;
+  float:left;
+}
+.link:hover{
+  background-color: black;
+  border: 2px solid white;
+}
+
 #name-header{
   /* color: tomato; */
   color: rgb(230, 160, 30);
@@ -157,13 +176,11 @@ margin-right: 5px;
   	/* background: rgb(47, 50, 53); */
   background: white;
   /* height: 102vh; */
-  height: 400vh;
+  height: 390vh;
   width: 100vw;
 }
 #portfolio-header, #social-header{
   color: white;
-  /* padding-top:5%;
-  padding-bottom:5%; */
 }
 
 .project-container{
@@ -189,14 +206,16 @@ margin-right: 5px;
   margin:0;
 }
 .project-img{
-  width:90%;
+  width:80%;
   height:100%;
   grid-area: img;
   justify-self: center;
 }
 .project-links{
+  left: 100;
   grid-area: links;
   justify-self: center;
+  /* grid-template-columns: 1fr 1fr; */
 }
 .project-techs{
   color: white;
